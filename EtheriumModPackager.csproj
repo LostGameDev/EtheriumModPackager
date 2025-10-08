@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Single-file publishing -->
+    <PublishSingleFile>true</PublishSingleFile>
+
+    <!-- Embed .NET runtime (optional if you want to run on machines without .NET installed) -->
+    <SelfContained>true</SelfContained>
+
+    <!-- Trim unused code for smaller file -->
+    <PublishTrimmed>true</PublishTrimmed>
+
+    <!-- Don't generate debug PDBs -->
+    <DebugType>none</DebugType>
+
+    <!-- Optional: improve startup performance -->
+    <PublishReadyToRun>true</PublishReadyToRun>
+
+    <!-- Output path for publish -->
+    <PublishDir>$(OutputPath)publish\</PublishDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+  </ItemGroup>
+
+  <!-- Automatically clean unnecessary files after build -->
+  <Target Name="CleanupBuildOutput" AfterTargets="Publish">
+    <ItemGroup>
+      <!-- Remove extra files generated during publish that are not needed -->
+      <FilesToDelete Include="$(PublishDir)*.pdb;$(PublishDir)*.dll;$(PublishDir)*.deps.json;$(PublishDir)*.runtimeconfig.json" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+  </Target>
+  
+</Project>
