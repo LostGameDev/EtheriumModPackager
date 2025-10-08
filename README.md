@@ -82,4 +82,4 @@ The tool ensures that `.etheriummod` files are portable and easy to distribute.
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See [LICENSE](../blob/master/LICENSE) for details.
+This project is licensed under the GNU General Public License v3.0. See [LICENSE](../blob/main/LICENSE) for details.
