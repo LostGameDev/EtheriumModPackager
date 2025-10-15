@@ -40,6 +40,9 @@ namespace EtheriumModPackager
                 }
             }
 
+            //Fix a bug where paths such as "./bin/net35/" would cause mods to not have version numbers in the file name
+            directoryPath = Path.GetFullPath(directoryPath);
+
             // Find all DLLs in the directory
             string[] dllFiles = Directory.GetFiles(directoryPath, "*.dll", SearchOption.TopDirectoryOnly);
             if (dllFiles.Length == 0)
